@@ -6,9 +6,12 @@ FROM $BASE_CONTAINER
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
 # Install Tensorflow
-# From: https://github.com/jupyter/docker-stacks/blob/main/tensorflow-notebook/Dockerfile
+# Adapted from: https://github.com/jupyter/docker-stacks/blob/main/tensorflow-notebook/Dockerfile
 RUN mamba install --quiet --yes \
-    'tensorflow' && \
+    'python=3.10.5' \
+    'numpy=1.22.4' \
+    'tensorflow=2.9.1' \
+    && \
     mamba clean --all -f -y && \
     fix-permissions "${CONDA_DIR}" && \
     fix-permissions "/home/${NB_USER}"
