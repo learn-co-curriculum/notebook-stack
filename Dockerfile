@@ -5,6 +5,9 @@ FROM $BASE_CONTAINER
 # Fix: https://github.com/koalaman/shellcheck/wiki/SC3014
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
+WORKDIR /tmp
+COPY spec-list.txt /tmp/spec-list.txt
+
 # Install Tensorflow
 # Adapted from: https://github.com/jupyter/docker-stacks/blob/main/tensorflow-notebook/Dockerfile
 RUN mamba install --quiet --yes --file spec-list.txt \
