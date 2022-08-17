@@ -7,10 +7,7 @@ SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
 # Install Tensorflow
 # Adapted from: https://github.com/jupyter/docker-stacks/blob/main/tensorflow-notebook/Dockerfile
-RUN mamba install --quiet --yes \
-    'python=3.10.5' \
-    'numpy=1.22.4' \
-    'tensorflow=2.9.1' \
+RUN mamba install --quiet --yes --file spec-list.txt \
     && \
     mamba clean --all -f -y && \
     fix-permissions "${CONDA_DIR}" && \
