@@ -30,6 +30,8 @@ If the previous step worked, run this command in the terminal (any directory sho
 docker build https://github.com/learn-co-curriculum/notebook-stack.git
 ```
 
+If you are working on modifying the Docker stack itself (e.g. modifying the Dockerfile) then it is not necessary to push changes to GitHub prior to actually building the image. Instead you can navigate to the root of the `notebook-stack` directory and simply run `docker build .` (the `.` at the end is necessary to indicate that the build should be based on everything in the current directory).
+
 ### Running the Image / Creating a Container
 
 When you use the `docker run` command it uses the image to create a container. (If you want, you can have multiple containers based on the same image at a time.)
