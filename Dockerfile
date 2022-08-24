@@ -10,11 +10,15 @@ SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 # Install conda dependencies not included in pyspark-notebook
 WORKDIR /tmp
 COPY spec-list.txt /tmp/spec-list.txt
+COPY requirements.txt /tmp/requirements.txt
 
 RUN mamba install --quiet --yes --file spec-list.txt \
     && \
     mamba clean --all -f -y && \
     fix-permissions "${CONDA_DIR}" && \
     fix-permissions "/home/${NB_USER}"
+
+# Facebook prophet won't install with conda (with this base image), so use pip
+RUN python3 -m pip install -r /tmp/requirements.txt
 
 WORKDIR "${HOME}"
